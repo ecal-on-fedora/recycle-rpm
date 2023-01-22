@@ -1,3 +1,4 @@
+%global debug_package %{nil}
 %global forgeurl https://github.com/steinwurf/recycle
 %global tag 6.0.0
 
@@ -27,14 +28,11 @@ Recycle header files for development
 %forgesetup
 
 %build
-%cmake -DCMAKE_INSTALL_PREFIX=_build
+%cmake
+%cmake_build
 
 %install
-%make_install
-mkdir -p %{buildroot}%{_includedir}/recycle
-install _build/include/recycle/no_locking_policy.hpp %{buildroot}%{_includedir}/recycle/no_locking_policy.hpp
-install _build/include/recycle/shared_pool.hpp %{buildroot}%{_includedir}/recycle/shared_pool.hpp
-install _build/include/recycle/unique_pool.hpp %{buildroot}%{_includedir}/recycle/unique_pool.hpp
+%cmake_install
 
 %files
 %license LICENSE.rst
